@@ -9,6 +9,10 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+// REVIEW [Structure | Design] 
+// Leftover template test routine 2 + 2 == 4, is the only unit test
+// No tests for login, registration, the database or entry handling. 
+// Enhancement: JUnit tests for ViewModel logic and progress analytics and the  instrumented tests for the database and its v1 -> v2 migration.
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {

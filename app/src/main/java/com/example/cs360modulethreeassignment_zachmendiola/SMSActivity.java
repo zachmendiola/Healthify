@@ -9,14 +9,18 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.view.View;
+import android.view.View; // REVIEW [Structure | Design] Unused import.
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// REVIEW [Structure | Design] Unreachable code: SMSActivity (SEND_SMS permission + "goal
+// reached" text) is not in AndroidManifest.xml and nothing starts it.
 public class SMSActivity extends AppCompatActivity {
 
     private static final int SMS_PERMISSION_CODE = 101;
+    // REVIEW [Defensive Programming | Design] Device permission state lives only in a field, so it resets to false on rotation even when granted.
+    // Re-check with ContextCompat.checkSelfPermission in onResume instead.
     private boolean smsPermissionGranted = false;
 
     @Override
@@ -35,8 +39,13 @@ public class SMSActivity extends AppCompatActivity {
             Toast.makeText(this, "SMS permission denied. Notifications will be app-only.", Toast.LENGTH_SHORT).show();
         });
 
+        // REVIEW [Structure | Algorithms] Goal detection is not implemented - this is a manual button.
+        // Enhancement: auto-detect after each entry. 
+        // [Arithmetic Operations] Weights will be doubles, so test weight <= goal.Guard trend/average divisors against zero.
         btnGoal.setOnClickListener(v -> {
             if (smsPermissionGranted) {
+                // REVIEW [Structure | Design] "Magic" phone number and message string constants.
+                // Enhancement: user-set number in SharedPreferences, message in strings.xml.
                 sendSMS("5551234567", "Congratulations! You've reached your goal weight!");
             } else {
                 Toast.makeText(this, "Goal reached! (SMS disabled)", Toast.LENGTH_SHORT).show();
@@ -54,6 +63,7 @@ public class SMSActivity extends AppCompatActivity {
     }
 
     private void sendSMS(String phoneNumber, String message) {
+        // REVIEW [Defensive Programming | Design] Catching generic Exception hides the cause, and nothing is logged.
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNumber, null, message, null, null);

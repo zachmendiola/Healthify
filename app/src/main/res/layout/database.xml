@@ -5,27 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/editTextGoal"
+        android:layout_width="188dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="170dp"
+        android:hint="Goal weight (lbs)"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSetGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Set Goal"
+        app:layout_constraintBottom_toBottomOf="@id/editTextGoal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/editTextGoal" />
+
     <TextView
         android:id="@+id/textViewProgress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/editTextGoal" />
 
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="411dp"
-        android:layout_height="470dp"
-        android:layout_marginTop="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/textViewProgress">
 
         <TableRow
             android:layout_width="match_parent"

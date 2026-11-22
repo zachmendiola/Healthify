@@ -34,6 +34,19 @@ public class TableActivity extends AppCompatActivity {
 
         loadEvents();
 
+        // Goal setting
+        EditText etGoal = findViewById(R.id.editTextGoal);
+        Button btnSetGoal = findViewById(R.id.buttonSetGoal);
+        btnSetGoal.setOnClickListener(v -> {
+            try {
+                manager.setGoalWeight(Double.parseDouble(etGoal.getText().toString().trim()));
+                etGoal.setText("");
+                loadEvents();
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Goal must be a number", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         btnAddEvent.setOnClickListener(v -> {
             String name = etEventName.getText().toString().trim();
             String date = etEventDate.getText().toString().trim();

@@ -23,12 +23,15 @@ android {
         }
     }
     compileOptions {
+        // java.time had issues with Java 8
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
 }
 
 dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 
     implementation libs.appcompat
     implementation libs.material
